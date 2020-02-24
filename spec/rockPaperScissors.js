@@ -1,6 +1,6 @@
 describe("Rock Paper Scissors", () => {
   it("should return the array containing 27 elements", () => {
-    const actual = rockPaperScissors(3);
+    const actual = rockPaperScissors();
 
     expect(true).toEqual(Array.isArray(actual));
     expect(27).toEqual(actual.length);

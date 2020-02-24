@@ -36,7 +36,9 @@ const stringifyJSON = (value) => {
         let quotedKey = "\"" + key + "\":";
         let quotedKeyVal = "\"" + value[key] + "\"";
 
-        if (typeof value[key] === "string") {
+        if (typeof value[key] === "function" || typeof value[key] === "undefined") {
+          continue;
+        } else if (typeof value[key] === "string") {
           object.push(quotedKey + quotedKeyVal);
         } else if (
           typeof value[key] === "boolean" ||

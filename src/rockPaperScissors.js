@@ -1,6 +1,6 @@
 /* exported rockPaperScissors */
 
-const rockPaperScissors = (rounds = 1) => {
+const rockPaperScissors = (rounds = 3) => {
   let result = [];
   let choices = ["rock", "paper", "scissors"];
 
@@ -20,3 +20,5 @@ const rockPaperScissors = (rounds = 1) => {
   play(rounds, []);
   return result;
 };
+
+console.log(rockPaperScissors(3));
