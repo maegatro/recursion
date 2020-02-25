@@ -1,6 +1,6 @@
 /* exported rockPaperScissors */
 
-const rockPaperScissors = (n) => {
+const rockPaperScissors = (n = 3) => {
   const weapons = ["rock", "paper", "scissors"];
   const numRounds = n;
   const possibleThrows = [];
