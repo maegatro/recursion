@@ -12,7 +12,7 @@ const stringifyJSON = (value) => {
       return "" + value;
   } else if (typeof value === "string" ||
   value instanceof Date) {
-    return "\"" + value + "\"";
+    return "\"" + value.toISOString() + "\"";
   }
 
   //arrays
