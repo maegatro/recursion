@@ -24,9 +24,11 @@ const stringifyJSON = (arg) => {
       resultString += obj;
     }else if(isString(obj)){ // when obj is string
       resultString += wrapString(obj);
+    }else if(obj instanceof Date){ // when obj is new Date()
+      resultString += wrapString(dateToString(obj));
     }else if(isArray(obj)){ // when obj is array
       
-      const callback = (val, indexOrKey, collection) => {
+      const callback = (val) => {
         if(isNumber(val)){ // when obj:array, val:number
           resultString += val;
           count ++;
@@ -51,7 +53,7 @@ const stringifyJSON = (arg) => {
 
     }else if(isObj(obj)){ // when obj is object
       
-      const callback =(val, indexOrKey, collection) => {
+      const callback =(val, indexOrKey) => {
         //resultString += wrapString(indexOrKey) + ':';
         if(isNumber(val)){ // when obj:object, val:number
           resultString += wrapString(indexOrKey) + ':';
