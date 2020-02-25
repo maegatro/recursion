@@ -10,8 +10,11 @@ const stringifyJSON = (value) => {
     typeof value === "boolean" || 
     value === null) {
       return "" + value;
-  } else if (typeof value === "string" ||
-  value instanceof Date) {
+  } else if (typeof value === "string") {
+    return "\"" + value + "\"";
+  }
+
+  else if (value instanceof Date) {
     return "\"" + value.toISOString() + "\"";
   }
 
