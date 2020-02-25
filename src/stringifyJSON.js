@@ -8,6 +8,8 @@ const stringifyJSON = (arg) => {
   const isString = (str) => typeof str === 'string';
   const wrapString = (str) => '"' + str + '"';
   const convetToStr = (val) => String(val);
+  const dateToString = (date) => date.toISOString();
+  
 
   let resultString = '';
   const innerFunc = (obj) =>{
@@ -23,13 +25,16 @@ const stringifyJSON = (arg) => {
     }else if(isString(obj)){ // when obj is string
       resultString += wrapString(obj);
     }else if(isArray(obj)){ // when obj is array
-      resultString += '[';
+      
       const callback = (val, indexOrKey, collection) => {
         if(isNumber(val)){ // when obj:array, val:number
           resultString += val;
           count ++;
         }else if(isString(val)){ // when obj:array, val:string
           resultString += wrapString(val);
+          count ++;
+        }else if(val instanceof Date){ // when obj:array, val: new Date()
+          resultString += wrapString(dateToString(val));
           count ++;
         }else{ // when obj:array, val: not number nor string
           innerFunc(val);
@@ -39,10 +44,13 @@ const stringifyJSON = (arg) => {
           resultString += ',';
         }
       }
+
+      resultString += '[';
       _.each(obj,callback);
       resultString += ']';
+
     }else if(isObj(obj)){ // when obj is object
-      resultString += '{';
+      
       const callback =(val, indexOrKey, collection) => {
         //resultString += wrapString(indexOrKey) + ':';
         if(isNumber(val)){ // when obj:object, val:number
@@ -53,11 +61,15 @@ const stringifyJSON = (arg) => {
           resultString += wrapString(indexOrKey) + ':';
           resultString += wrapString(val);
           count ++;
-        }else if(typeof val === 'undefined' 
+        }else if(typeof val === 'undefined' //when obj:object, val:undefined/function
         || typeof val === 'function'){
           count ++;
           needComma = false;
-        }else{ // when obj:object, val: not number nor string
+        }else if(val instanceof Date){ // when obj:object, val:new Date()
+          resultString += wrapString(indexOrKey) + ':';
+          resultString += wrapString(dateToString(val));
+          count ++;
+        }else{ // when obj:object, val: object/array
           resultString += wrapString(indexOrKey) + ':';
           innerFunc(val)
           count ++;
@@ -66,6 +78,8 @@ const stringifyJSON = (arg) => {
           resultString += ',';
         }
       }
+
+      resultString += '{';
       _.each(obj,callback);
       resultString += '}'; 
     }
@@ -73,18 +87,8 @@ const stringifyJSON = (arg) => {
   innerFunc(arg);
   return resultString;
 }
-// const test0 = stringifyJSON({ foo: true, bar: false, baz: null });
-// console.log('test0',test0);
-// console.log(JSON.stringify({ foo: true, bar: false, baz: null }));
 
-// const lastOne = [
-//   {
-//     function1: function() {},
-//     function2: function() {},
-//     undefined: undefined
-//   }
-// ]
-
-// const test1 = stringifyJSON(lastOne);
-// console.log('test1',test1);
-// console.log(lastOne,JSON.stringify(lastOne));
+// const date = new Date();
+// const arrDate = [1,2,3,{'date':date}]
+// const test = stringifyJSON(arrDate);
+// console.log(test);
