@@ -24,6 +24,11 @@ const stringifyJSON = (value) => {
     return `[${stringifiedArray}]`;
   }
 
+  //if it's a date
+  if (Object.prototype.toString.call(value) === "[object Date]") {
+    return `"${value}"`;
+  }
+
   //if it's an object
   if (Object.prototype.toString.call(value) === "[object Object]") {
     const stringifiedObject = [];
