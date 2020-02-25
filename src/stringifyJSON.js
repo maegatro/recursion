@@ -45,7 +45,6 @@ const stringifyJSON = (value) => {
           continue;
         } else if (typeof value[key] === "string") {
           object.push(quotedKey + quotedKeyVal);
-          console.log("hi");
         } else if (
           typeof value[key] === "boolean" ||
           typeof value[key] === "number" ||
