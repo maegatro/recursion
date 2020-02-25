@@ -20,5 +20,3 @@ const rockPaperScissors = (rounds = 3) => {
   play(rounds, []);
   return result;
 };
-
-console.log(rockPaperScissors(3));

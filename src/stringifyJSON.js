@@ -4,13 +4,14 @@ const stringifyJSON = (value) => {
   let array = [];
   let object = [];
 
-  //primitives
+  //primitives or Date object
   if (
     typeof value === "number" || 
     typeof value === "boolean" || 
     value === null) {
       return "" + value;
-  } else if (typeof value === "string") {
+  } else if (typeof value === "string" ||
+  value instanceof Date) {
     return "\"" + value + "\"";
   }
 
@@ -29,7 +30,8 @@ const stringifyJSON = (value) => {
   //objects
   else if (typeof value === "object") {
 
-    if (Object.keys(value).length === 0) {
+    if (Object.keys(value).length === 0 &&
+      !(object instanceof Date)) {
       return "{}";
     } else {
       for (const key in value) {
@@ -40,6 +42,7 @@ const stringifyJSON = (value) => {
           continue;
         } else if (typeof value[key] === "string") {
           object.push(quotedKey + quotedKeyVal);
+          console.log("hi");
         } else if (
           typeof value[key] === "boolean" ||
           typeof value[key] === "number" ||
