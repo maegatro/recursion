@@ -19,7 +19,9 @@ const stringifiableValues = [
   { a: { b: "c" } },
   { a: ["b", "c"] },
   [{ a: "b" }, { c: "d" }],
-  { a: [], c: {}, b: true }
+  { a: [], c: {}, b: true },
+  {"foo":["2019-05-20T00:00:00.000Z","2020-02-25T15:45:01.639Z"]},
+  "2020-02-25T15:45:01.639Z"
 ];
 
 const unstringifiableValues = [

@@ -2,7 +2,7 @@
 
 const stringifyJSON = (obj) => {
   // YOUR CODE HERE
-  console.log("obj",obj)
+  //console.log("obj",obj)
   let arrVals = [];
   let objKeys = [];
   let keyVals = [];
