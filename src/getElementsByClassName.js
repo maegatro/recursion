@@ -8,7 +8,7 @@ const getElementsByClassName = (className,node) => {
   if(!node){
     node = document.body;
   } else {
-    node = node;
+    node;
   }
 
   if (node.classList && node.classList.contains(className)){
