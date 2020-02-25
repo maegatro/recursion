@@ -90,7 +90,8 @@ const stringifyJSON = (arg) => {
   return resultString;
 }
 
-// const date = new Date();
-// const arrDate = [1,2,3,{'date':date}]
-// const test = stringifyJSON(arrDate);
-// console.log(test);
+// const date1 = new Date();
+// const date2 = {'foo':[date1,date1]}
+// const test1 = stringifyJSON(date1);
+// const test2 = stringifyJSON(date2);
+// console.log(test1,test2);
