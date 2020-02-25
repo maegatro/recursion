@@ -26,7 +26,7 @@ const stringifyJSON = (value) => {
 
   //if it's a date
   if (Object.prototype.toString.call(value) === "[object Date]") {
-    return value.toString();
+    return value.toISOString();
   }
 
   //if it's an object
