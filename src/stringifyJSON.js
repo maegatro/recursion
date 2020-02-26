@@ -64,12 +64,36 @@ const stringifyJSON = (input) => {
 
     }
 
-    // Test for Objects
+     // Test for Objects
     //if (input.constructor.name == "Object"){
-    if (input instanceof Object && Object.keys(input).length === 0) {
-        console.log("is an actual empty object")
-        return '{}'
-    } 
+        let tempArrayOfKeysValues = []
+        if (input instanceof Object && Object.keys(input).length === 0) {
+            console.log("is an actual object")
+            return '{}'
+        } else if (input instanceof Object){
+            objKeys = Object.keys(input);
+          //set key output;
+            objKeys.forEach(function(key) {
+              let keysToStringify = '"' + key + '"' + ':';
+              let ValuesToStrinfigy = input[key];
+              
+              if (typeof ValuesToStrinfigy === 'string') {
+                tempArrayOfKeysValues.push(keysToStringify + '"' + ValuesToStrinfigy + '"');
+             
+            } else if (typeof ValuesToStrinfigy === 'boolean' || typeof ValuesToStrinfigy === 'number' || ValuesToStrinfigy === null) {
+                tempArrayOfKeysValues.push(keysToStringify + ValuesToStrinfigy);
+
+            } else if (Array.isArray(ValuesToStrinfigy)){
+                let tempArray =[];
+                ValuesToStrinfigy.forEach(item => tempArray.push(stringifyJSON(item)))
+            
+            } else if (ValuesToStrinfigy instanceof Object) {
+                tempArrayOfKeysValues.push(keysToStringify + stringifyJSON(ValuesToStrinfigy));
+            
+            }
+          });
+            return "{" + tempArrayOfKeysValues + "}"
+        }
 
 } 
 
