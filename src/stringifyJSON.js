@@ -2,7 +2,6 @@
 function stringifyJSON(input) {
     // YOUR CODE HERE
     /// test for primitive types
-    //console.log("the type of input is", typeof(input))
     if (typeof(input) === 'number' || typeof(input) === 'boolean'){ //typeof(obj) === 'string'){
         return input.toString()
     } else if (typeof(input) === 'string') {
@@ -23,9 +22,6 @@ function stringifyJSON(input) {
     if (Array.isArray(input)){
         let tempArray =[];
         input.forEach(item => tempArray.push(stringifyJSON(item)))
-        // for(let item of input){
-        //     tempArray.push(item)
-        // }
         return "[" + tempArray.toString() + "]"
     }
     // Test for Objects
@@ -58,4 +54,4 @@ function stringifyJSON(input) {
         }
     } 
 
-    stringifyJSON(stringifiableValues);
+   // stringifyJSON(stringifiableValues);
