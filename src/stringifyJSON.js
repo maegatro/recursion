@@ -64,7 +64,7 @@ const stringifyJSON = (input) => {
 
     }
 
-     // Test for Objects
+    // Test for Objects
     //if (input.constructor.name == "Object"){
         let tempArrayOfKeysValues = []
         if (input instanceof Object && Object.keys(input).length === 0) {
@@ -72,17 +72,20 @@ const stringifyJSON = (input) => {
             return '{}'
         } else if (input instanceof Object){
             objKeys = Object.keys(input);
-          //set key output;
+
             objKeys.forEach(function(key) {
               let keysToStringify = '"' + key + '"' + ':';
               let ValuesToStrinfigy = input[key];
               
-              if (typeof ValuesToStrinfigy === 'string') {
+            if (ValuesToStrinfigy instanceof Function || typeof ValuesToStrinfigy === undefined){
+                tempArrayOfKeysValues.push('');
+
+            } else if (typeof ValuesToStrinfigy === 'string') {
                 tempArrayOfKeysValues.push(keysToStringify + '"' + ValuesToStrinfigy + '"');
-             
+            
             } else if (typeof ValuesToStrinfigy === 'boolean' || typeof ValuesToStrinfigy === 'number' || ValuesToStrinfigy === null) {
                 tempArrayOfKeysValues.push(keysToStringify + ValuesToStrinfigy);
-
+            
             } else if (Array.isArray(ValuesToStrinfigy)){
                 let tempArray =[];
                 ValuesToStrinfigy.forEach(item => tempArray.push(stringifyJSON(item)))
@@ -94,9 +97,7 @@ const stringifyJSON = (input) => {
           });
             return "{" + tempArrayOfKeysValues + "}"
         }
-
-} 
-
+    } 
 
 console.log(typeof(stringifyJSON(testString)))
 console.log(stringifyJSON(testString))
