@@ -13,16 +13,16 @@ const getElementsByClassName = (className,node) => {
 
   if (node.classList && node.classList.contains(className)){
     results.push(node);
-    console.log(node);
+    //console.log(node);
   }
   
   let children = node.childNodes;
   if (children) {
     for(let child of children){
       results = results.concat(getElementsByClassName(className, child));
-      console.log(results)
+      //console.log(results)
     }
   }
   return results;
 };
-console.log(getElementsByClassName("testing",document.body))
+//console.log(getElementsByClassName("testing",document.body))
