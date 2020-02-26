@@ -23,7 +23,8 @@ else if (Array.isArray(obj)){
   }
 }
 else if(Object.prototype.toString.call(obj)==="[object Date]"){
-  return ` "${obj.toISOString()}"`;
+  let date = obj.toISOString()
+  return `"${date}"`;
 }
 else if (obj instanceof Object) {
   objKeys = Object.keys(obj);
