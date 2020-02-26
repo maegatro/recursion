@@ -22,6 +22,18 @@
 //     { a: [], c: {}, b: true }
 //   ];
 
+
+// let testString = {
+//     Name:"Gatitas",
+//     aFunction: () => {console.log("this is a function")},
+//     Cat:"Dog",
+//     undefined:undefined,
+//     Dog:"Cat",
+//     null:null,
+//     Pet:"Cool"
+// };
+
+
 //debugger;
 const stringifyJSON = (input) => {
     // YOUR CODE HERE
@@ -37,7 +49,7 @@ const stringifyJSON = (input) => {
         return 'null'
     }
 
-    // Check arrays
+    // Test for Arrays
     if(Array.isArray(input) && input.length === 0) {
         return '[]';
     }
@@ -52,6 +64,12 @@ const stringifyJSON = (input) => {
 
     }
 
+    // Test for Objects
+    //if (input.constructor.name == "Object"){
+    if (input instanceof Object && Object.keys(input).length === 0) {
+        console.log("is an actual empty object")
+        return '{}'
+    } 
 
 } 
 
