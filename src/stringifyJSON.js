@@ -39,13 +39,13 @@ const stringifyJSON = (input) => {
     // YOUR CODE HERE
     
     /// test for primitive types
-    console.log("the type of input is", typeof(input))
+    //console.log("the type of input is", typeof(input))
     if (typeof(input) === 'number' || typeof(input) === 'boolean'){ //typeof(obj) === 'string'){
         return input.toString()
     } else if (typeof(input) === 'string') {
         return '"' + input + '"';
     } else if (input === null){
-        console.log("yes")
+        //console.log("yes")
         return 'null'
     }
 
@@ -68,7 +68,7 @@ const stringifyJSON = (input) => {
     //if (input.constructor.name == "Object"){
         let tempArrayOfKeysValues = []
         if (input instanceof Object && Object.keys(input).length === 0) {
-            console.log("is an actual object")
+            //console.log("is an actual object")
             return '{}'
         } else if (input instanceof Object){
             objKeys = Object.keys(input);
@@ -99,11 +99,11 @@ const stringifyJSON = (input) => {
         }
     } 
 
-console.log(typeof(stringifyJSON(testString)))
-console.log(stringifyJSON(testString))
+// console.log(typeof(stringifyJSON(testString)))
+// console.log(stringifyJSON(testString))
 
-console.log(JSON.stringify(testString))
-console.log(typeof(JSON.stringify(testString)))
+// console.log(JSON.stringify(testString))
+// console.log(typeof(JSON.stringify(testString)))
 
 //   let result = stringifiableValues.toString();
 //   console.log(result)
