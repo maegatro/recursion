@@ -25,16 +25,19 @@
 let testString = "Minxupis"
   
 
-  const stringifyJSON = (obj) => {
+const stringifyJSON = (input) => {
     // YOUR CODE HERE
     
     /// test for primitive types
-    if (typeof(obj) === 'number' || typeof(obj) === 'boolean' || typeof(obj) === null){ //typeof(obj) === 'string'){
-        return obj.toString()
-    } else if (typeof(obj) === 'string')
-    return '"' + obj + '"';
-
-  };
+    if (typeof(input) === 'number' || typeof(input) === 'boolean'){ //typeof(obj) === 'string'){
+        return input.toString()
+    } else if (typeof(input) === 'string') {
+        return '"' + input + '"';
+    } else if (input === null){
+        console.log("yes")
+        return 'null'
+    }
+} 
 
 console.log(typeof(stringifyJSON(testString)))
   console.log(JSON.stringify(testString))
