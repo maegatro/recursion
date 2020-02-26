@@ -49,6 +49,10 @@ const stringifyJSON = (input) => {
         return 'null'
     }
 
+    if (input.getMonth){
+        return `"${input.toISOString()}"`;
+    }
+
     // Test for Arrays
     if(Array.isArray(input) && input.length === 0) {
         return '[]';
@@ -86,8 +90,8 @@ const stringifyJSON = (input) => {
             } else if (typeof ValuesToStrinfigy === 'boolean' || typeof ValuesToStrinfigy === 'number' || ValuesToStrinfigy === null) {
                 tempArrayOfKeysValues.push(keysToStringify + ValuesToStrinfigy);
             
-            } else if (key instanceof Date) {
-                tempArrayOfKeysValues.push("\"" + key.toJSON() + "\"");
+            // } else if (key instanceof Date) {
+            //     tempArrayOfKeysValues.push("\"" + key.toJSON() + "\"");
                 //return;
           
             // } else if (Array.isArray(ValuesToStrinfigy)){
