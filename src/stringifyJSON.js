@@ -15,8 +15,6 @@ if (typeof obj === 'number' || typeof obj === 'boolean' || obj === null){
 else if (Array.isArray(obj)){
   if (obj[0] === undefined){
       return "[]";
-  }else if(obj instanceof Date){
-    return '"' + obj.toISOString() + '"'; 
   }else{
       obj.forEach((element)=>{
           arrVals.push(stringifyJSON(element));
@@ -24,11 +22,14 @@ else if (Array.isArray(obj)){
       return "[" + arrVals + "]";
   }
 }
+else if(Object.prototype.toString.call(obj)==="[object Date]"){
+  return ` "${obj.toISOString()}"`;
+}
 else if (obj instanceof Object) {
   objKeys = Object.keys(obj);
   objKeys.forEach((key)=>{
       let getAkey = '"' + key + '":';
-      var getAval = obj[key];
+      let getAval = obj[key];
       //console.log(getAval)
       if (getAval instanceof Function){
           keyVals.push('');
