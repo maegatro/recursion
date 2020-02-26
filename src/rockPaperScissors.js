@@ -21,15 +21,7 @@ const rockPaperScissors = (rounds = 3) => {
       playGame(rounds - 1, result.concat(weapon));
     }
   }
-
   playGame(rounds);
-
-  console.log(allPatterns);
-
-  // allPatterns.forEach(el => {
-  //   tmp = el.filter(weapon => weapon !== undefined)
-  // });
-
-  // console.log(tmp);
+  
   return allPatterns;
 };
