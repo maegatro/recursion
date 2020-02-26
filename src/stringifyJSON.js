@@ -35,7 +35,7 @@
 
 
 //debugger;
-const stringifyJSON = (input) => {
+function stringifyJSON(input) {
     // YOUR CODE HERE
     
     /// test for primitive types
@@ -75,7 +75,7 @@ const stringifyJSON = (input) => {
             //console.log("is an actual object")
             return '{}'
         } else if (input instanceof Object){
-            objKeys = Object.keys(input);
+            let objKeys = Object.keys(input);
 
             objKeys.forEach(function(key) {
               let keysToStringify = '"' + key + '"' + ':';
