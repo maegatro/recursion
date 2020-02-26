@@ -22,13 +22,12 @@
 //     { a: [], c: {}, b: true }
 //   ];
 
-let testString = "Minxupis"
-  
-
+//debugger;
 const stringifyJSON = (input) => {
     // YOUR CODE HERE
     
     /// test for primitive types
+    console.log("the type of input is", typeof(input))
     if (typeof(input) === 'number' || typeof(input) === 'boolean'){ //typeof(obj) === 'string'){
         return input.toString()
     } else if (typeof(input) === 'string') {
@@ -37,12 +36,31 @@ const stringifyJSON = (input) => {
         console.log("yes")
         return 'null'
     }
+
+    // Check arrays
+    if(Array.isArray(input) && input.length === 0) {
+        return '[]';
+    }
+
+    if (Array.isArray(input)){
+        let tempArray =[];
+        input.forEach(item => tempArray.push(stringifyJSON(item)))
+        // for(let item of input){
+        //     tempArray.push(item)
+        // }
+        return "[" + tempArray.toString() + "]"
+
+    }
+
+
 } 
 
-console.log(typeof(stringifyJSON(testString)))
-  console.log(JSON.stringify(testString))
-  console.log(stringifyJSON(testString))
 
+console.log(typeof(stringifyJSON(testString)))
+console.log(stringifyJSON(testString))
+
+console.log(JSON.stringify(testString))
+console.log(typeof(JSON.stringify(testString)))
 
 //   let result = stringifiableValues.toString();
 //   console.log(result)
