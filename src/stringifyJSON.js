@@ -15,6 +15,8 @@ if (typeof obj === 'number' || typeof obj === 'boolean' || obj === null){
 else if (Array.isArray(obj)){
   if (obj[0] === undefined){
       return "[]";
+  }else if(obj instanceof Date){
+    return '"' + obj.toISOString() + '"'; 
   }else{
       obj.forEach((element)=>{
           arrVals.push(stringifyJSON(element));
@@ -38,7 +40,7 @@ else if (obj instanceof Object) {
       }else if (getAval instanceof Object){
           keyVals.push(getAkey + stringifyJSON(getAval));
       }else if(getAval instanceof Date){
-          keyVals.push(getAkey + '"' + Date.toISOString(getAval))
+          keyVals.push(getAkey + '"' + getAval.toISOString()+'"')
       }
   });
   return '{' + keyVals + '}';
