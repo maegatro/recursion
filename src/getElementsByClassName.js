@@ -16,6 +16,5 @@ const getElementsByClassName = (targetClassName) => {
     }
   }
   getElement(targetElement);
-  console.log(result);
   return result;
   };
