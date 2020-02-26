@@ -19,7 +19,10 @@ const stringifiableValues = [
   { a: { b: "c" } },
   { a: ["b", "c"] },
   [{ a: "b" }, { c: "d" }],
-  { a: [], c: {}, b: true }
+  { a: [], c: {}, b: true },
+  {foo:["2019-05-20T00:00:00.000Z","2020-02-25T15:45:01.639Z"]},
+  "2020-02-25T15:45:01.639Z"
+ 
 ];
 
 const unstringifiableValues = [
@@ -53,4 +56,34 @@ describe("stringifyJSON", function() {
   for (let i = 0; i < unstringifiableValues.length; i++) {
     testUnstringifiable(unstringifiableValues[i], i);
   }
+
+// it("should return Date as a string",()=>{
+//   const obj = [
+//     {foo:["2019-05-20T00:00:00.000Z","2020-02-25T15:45:01.639Z"]},
+//     "2020-02-25T15:45:01.639Z"
+//   ]
+//   function testStringify(valueToTest, index) {
+//     it("should parse some objects " + index, () => {
+//       const result = stringifyJSON(valueToTest);
+//       const expected = JSON.stringify(valueToTest);
+//       expect(result).toEqual(expected);
+//     });
+//   }
+
+//   for (let i = 0; i < obj.length; i++) {
+//     testStringify(obj[i], i);
+//   }
+
+//   function testUnstringifiable(valueToTest, index) {
+//     it("should not be able to parse bad values", () => {
+//       const result = stringifyJSON(valueToTest);
+//       const expected = JSON.stringify(valueToTest);
+//       expect(result).toEqual(expected);
+//     });
+//   }
+
+//   for (let i = 0; i < unstringifiableValues.length; i++) {
+//     testUnstringifiable(unstringifiableValues[i], i);
+//   }
+// })
 });
