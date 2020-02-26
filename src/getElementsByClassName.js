@@ -1,5 +1,5 @@
 /* exported getElementsByClassName */
 
-const getElementsByClassName = () => {
-  // YOUR CODE HERE
+const getElementsByClassName = (n) => {
+  console.log(m);
 };
