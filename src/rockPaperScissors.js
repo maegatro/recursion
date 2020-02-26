@@ -1,5 +1,5 @@
 /* exported rockPaperScissors */
 
 const rockPaperScissors = () => {
-  // Your code here
+  // Going to work on this first
 };
