@@ -1,11 +1,18 @@
 const htmlStrings = [
   "<p></p>",
+
   '<div><div class="testing"></div></div>',
+
   '<div><div class="targetClassName"></div></div>',
+
   '<div><button class="targetClassName"></button></div><div class="classname"></div>',
+
   '<div><p class="targetClassName"><b>asdfasdf</b></p></div><div class="classname"><span></span></div>',
+
   '<div><p class="targetClassName"><b>asdfasdf</b></p></div><div class="classname"><span class="span test"></span></div>',
+
   '<div class="a"><p class="targetClassName asdf"><b>aasdfasdfsdfasdf</b></p></div><div class="classname"><span class="span test"></span></div>'
+  
 ];
 
 const createHtmlElementFromString = (html) => {
