@@ -86,6 +86,10 @@ const stringifyJSON = (input) => {
             } else if (typeof ValuesToStrinfigy === 'boolean' || typeof ValuesToStrinfigy === 'number' || ValuesToStrinfigy === null) {
                 tempArrayOfKeysValues.push(keysToStringify + ValuesToStrinfigy);
             
+            } else if (key instanceof Date) {
+                tempArrayOfKeysValues.push("\"" + value.toJSON() + "\"");
+                //return;
+          
             // } else if (Array.isArray(ValuesToStrinfigy)){
             //     let tempArray =[];
             //     ValuesToStrinfigy.forEach(item => tempArray.push(stringifyJSON(item)))
