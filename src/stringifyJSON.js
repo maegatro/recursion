@@ -86,9 +86,9 @@ const stringifyJSON = (input) => {
             } else if (typeof ValuesToStrinfigy === 'boolean' || typeof ValuesToStrinfigy === 'number' || ValuesToStrinfigy === null) {
                 tempArrayOfKeysValues.push(keysToStringify + ValuesToStrinfigy);
             
-            } else if (Array.isArray(ValuesToStrinfigy)){
-                let tempArray =[];
-                ValuesToStrinfigy.forEach(item => tempArray.push(stringifyJSON(item)))
+            // } else if (Array.isArray(ValuesToStrinfigy)){
+            //     let tempArray =[];
+            //     ValuesToStrinfigy.forEach(item => tempArray.push(stringifyJSON(item)))
             
             } else if (ValuesToStrinfigy instanceof Object) {
                 tempArrayOfKeysValues.push(keysToStringify + stringifyJSON(ValuesToStrinfigy));
