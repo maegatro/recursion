@@ -41,6 +41,7 @@ describe("getElementsByClassName", () => {
         let expectedNodeList = document.getElementsByClassName(
           "targetClassName"
         );
+        // console.log($rootElement);
         let expectedArray = Array.prototype.slice.apply(expectedNodeList);
         expect(result).toEqual(expectedArray);
         body.removeChild($rootElement);
