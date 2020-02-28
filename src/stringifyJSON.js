@@ -6,10 +6,7 @@ const stringifyJSON = (target) => {
 
   const convertToString = (value) =>{
 
-    if (typeof value == "number"){
-      result += String(value);
-  
-    }else if (typeof value == "boolean"){
+    if (typeof value == "number" || typeof value == "boolean" ){
       result += String(value);
   
     }else if (value == null){
@@ -28,22 +25,26 @@ const stringifyJSON = (target) => {
 
         for(let i = 0; i < value.length; i++){
           if(typeof value[i] == "string"){
-            //result += '"' + value[i] + '"' + ",";
-            resultElements.push('"' + value[i] + '"');
+            result += '"' + value[i] + '"' + ",";
+
+            if(i == value.length - 1){
+              result = result.slice(0, -1);
+            }
   
           }else if(typeof value[i] == "number"){
-            //result += String(value[i]) + ",";
-            resultElements.push(String(value[i]));
+            result += String(value[i]) + ",";
+
+            if(i == value.length - 1){
+              result = result.slice(0, -1);
+            }
 
           }else{
             convertToString(value[i]);
-            //result = result.slice(0, -1);
-            //result += "],";
+            if(i !== value.length - 1){
+              result += ",";
+            }
           }
         } 
-        //result = result.slice(0, -1);
-        result += resultElements.join(",");
-        resultElements = [];
         result += "]";
         return;
       }
@@ -55,31 +56,40 @@ const stringifyJSON = (target) => {
         result += "{";
 
           for(key in value){
-          if (typeof value[key] == "number"){
-            //result += '"' + key + '":' + value[key] + ",";
-            resultElements.push('"' + key + '":' + value[key]);
+            let keysArray = Object.keys(value);
 
-          }else if(typeof value[key] == "boolean"){
-            //result += '"' + key + '":' + value[key] + ",";
-            resultElements.push('"' + key + '":' + value[key]);
+          if (typeof value[key] == "number" || typeof value[key] == "boolean"){
+            result += '"' + key + '":' + value[key] + ",";
 
-          }else if(value[key] == null){
-            //result += '"' + key + '":' + "null" + ",";
-            resultElements.push('"' + key + '":' + "null");
+            if (key == keysArray[keysArray.length - 1]){
+              result = result.slice(0, -1);
+            }
+          }else if(value[key] === null){
+            result += '"' + key + '":' + "null" + ",";
 
-          }else if(typeof value[key] == "string"){
-            //result += '"' + key + '":' + '"' + value[key] + '",';
-            resultElements.push('"' + key + '":' + '"' + value[key] + '"');
-            
+            if (key == keysArray[keysArray.length - 1]){
+              result = result.slice(0, -1);
+            }
+
+          }else if(value[key] === undefined || typeof value[key] == "function");//do not do anything
+
+          else if(typeof value[key] == "string"){
+            result += '"' + key + '":' + '"' + value[key] + '",';
+
+            if (key == keysArray[keysArray.length - 1]){
+              result = result.slice(0, -1);
+            }
+
           }else{
-            //result += '"' + key + '":';
+            result += '"' + key + '":';
+            let originalKey = key;
             convertToString(value[key]);
-            //result += ",";
+
+            if (originalKey !== keysArray[keysArray.length - 1]){
+              result += ",";
+            }
           }
         }
-        //result = result.slice(0, -1);
-        result += resultElements.join(",")
-        resultElements = [];
         result += "}"
       }
     }    
@@ -88,12 +98,3 @@ const stringifyJSON = (target) => {
   convertToString(target);
   return result;
 };
-
-
-
-let array1 = { a: { b: "c" } };
-console.log(stringifyJSON(array1))
-console.log(Object.keys(array1).length)
-
-//array[2] = [3, 4]
-//console.log(stringifyJSON(array1[2]))
