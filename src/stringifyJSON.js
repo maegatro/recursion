@@ -2,11 +2,10 @@
 
 const stringifyJSON = (target) => {
   let result = "";
-  let resultElements = [];
 
   const convertToString = (value) =>{
 
-    if (typeof value == "number" || typeof value == "boolean" ){
+    if (typeof value == "number" || typeof value == "boolean" || Object.prototype.toString.call(value) === "[object Date]"){
       result += String(value);
   
     }else if (value == null){
@@ -55,7 +54,7 @@ const stringifyJSON = (target) => {
       }else{
         result += "{";
 
-          for(key in value){
+          for(let key in value){
             let keysArray = Object.keys(value);
 
           if (typeof value[key] == "number" || typeof value[key] == "boolean"){
