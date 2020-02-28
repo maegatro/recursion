@@ -5,9 +5,12 @@ const stringifyJSON = (target) => {
 
   const convertToString = (value) =>{
 
-    if (typeof value == "number" || typeof value == "boolean" || Object.prototype.toString.call(value) === "[object Date]"){
+    if (typeof value == "number" || typeof value == "boolean"){
       result += String(value);
   
+    }else if(Object.prototype.toString.call(value) === "[object Date]"){
+      result += '"' + value.toISOString() + '"';
+
     }else if (value == null){
       result += "null";
   
