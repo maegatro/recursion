@@ -5,17 +5,8 @@ const getElementsByClassName = target => {
 
   const getElements = DOMstring => {
 
-    // console.log(DOMstring);
-
     // Base case
-    // if(DOMstring.childNodes.length === 0 && DOMstring.className.includes(target)) {
-    //   targetNodes.push(DOMstring);
-    //   return;
-    // }
-
     if(DOMstring.childNodes.length === 0) {
-      // let textNode = DOMstring.textContent;
-      // console.log(textNode);
       if(DOMstring.textContent !== ""){
         return;
       }else if(DOMstring.className.includes(target)){
@@ -37,9 +28,6 @@ const getElementsByClassName = target => {
   }
 
   getElements(document.body);
-
-  console.log(targetNodes);
-  console.log("--------------------");
 
   return targetNodes;
 };
