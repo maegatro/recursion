@@ -34,6 +34,8 @@ describe("stringifyJSON", function() {
     it("should parse some objects " + index, () => {
       const result = stringifyJSON(valueToTest);
       const expected = JSON.stringify(valueToTest);
+      console.log(expected);
+      console.log("------------------");
       expect(result).toEqual(expected);
     });
   }
@@ -46,6 +48,7 @@ describe("stringifyJSON", function() {
     it("should not be able to parse bad values", () => {
       const result = stringifyJSON(valueToTest);
       const expected = JSON.stringify(valueToTest);
+      console.log(expected);
       expect(result).toEqual(expected);
     });
   }
