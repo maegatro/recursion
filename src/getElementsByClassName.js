@@ -2,43 +2,28 @@
 
 const getElementsByClassName = target => {
   let targetNodes = [];
-  let output = [];
 
   const getElements = DOMstring => {
 
-  // Base case
-  if(DOMstring.childNodes.length === 0){
-    return;
-  }
+    console.log(DOMstring);
 
-
-
-  // Recursive case
-    let node = DOMstring.lastChild;
-
-    if(node.className.includes(target)){
-      targetNodes.push(node);
+    // Base case
+    if(DOMstring.lastChild === null){
+      return;
     }
 
-    // console.log(`Check ${node.className.includes(target)}`);
-    // console.log(node);
+    // Recursive case
+    if(DOMstring.className.includes(target)){
+      targetNodes.push(DOMstring);
 
-    // targetNodes.push(node);
-
+    }
+    let node = DOMstring.lastChild;
     getElements(node);
   }
 
   getElements(document.body);
 
-  // return targetNodes;
   console.log(targetNodes);
+  console.log("--------------------");
+  return targetNodes;
 };
-
-/*
-  Document.body
-    p
-    div
-      div className = testing
-    /div
-
-*/
