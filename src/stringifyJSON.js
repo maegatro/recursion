@@ -48,11 +48,11 @@ const stringifyJSON = (input) => {
             result += ",";
           }
           covertToString(val[i]);
-          console.log("result" + result);
         }
       }
+      result += "]";
     }
-    }
+  }
     covertToString(input);
 
     return result;
