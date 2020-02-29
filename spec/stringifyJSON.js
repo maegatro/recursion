@@ -34,6 +34,7 @@ describe("stringifyJSON", function() {
     it("should parse some objects " + index, () => {
       const result = stringifyJSON(valueToTest);
       const expected = JSON.stringify(valueToTest);
+      // console.log(expected);
       console.log("--------------");
       expect(result).toEqual(expected);
     });
