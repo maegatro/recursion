@@ -58,11 +58,28 @@ const stringifyJSON = (input) => {
 
     if(dataType === "[object Object]" || isObject){
       valLength = Object.keys(val).length;
+      valObjArr = Object.entries(val);
 
       if(valLength === 0){
         result += "{}";
         return;
+      } else {
+        for(let l = 0; l < valLength; l++){
+          // result +=`${covertToString(valObjArr[l][0])}:${covertToString(valObjArr[l][1])}`;
+          if(l === 0){
+            result += "{";
+            covertToString(valObjArr[l][0]);
+            result += ":";
+            covertToString(valObjArr[l][1]);
+          }else {
+            result += ",";
+            covertToString(valObjArr[l][0]);
+            result += ":";
+            covertToString(valObjArr[l][1]);
+          }
+        }
       }
+      result += "}";
     }
   }
     console.log(result);
