@@ -1,9 +1,34 @@
 /* exported stringifyJSON */
 
-const stringifyJSON = (a) => {
+const stringifyJSON = (input) => {
+  let result = "";
 
-  console.log(a);
-  console.log(Object.prototype.toString.call(a));
+  let isPrimitive = ["[object Number]", "[object Boolean]", "[object Null]"];
+  //, "[object String]"
+  console.log(input);
+
+  const covertToString = (val) => {
+    let dataType = Object.prototype.toString.call(val);
+
+    // Base case
+    if(isPrimitive.includes(dataType)){
+      result = `${val}`;
+      return;
+    }else if(dataType === "[object String]") {
+      result =  `"${val}"`;
+      return;
+    }else {
+        //[object Array], [object Object]
+
+    }
+
+    //Recursive case
+  }
+
+  covertToString(input);
+
+  return result;
+};
 
   // Base case
     // When input is a primitive data(i.e. boolean, numerical, null)
@@ -14,7 +39,6 @@ const stringifyJSON = (a) => {
 
   // Recursive case (When it is an object(nested, not empty)
   //or an array(nested with objects/nested with arrays))
-};
 
 /*
   1) undefined, Function and Symbols are not valid JSON values ---> converted to null
