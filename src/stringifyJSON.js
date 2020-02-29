@@ -13,9 +13,17 @@ const stringifyJSON = (input) => {
     let dataType = Object.prototype.toString.call(val);
     let valLength = 0;
 
-    if(dataType === "[object Array]") valLength = val.length;
+    console.log("Type of Data: " + typeof val);
 
-    if(dataType === "[object Object]") valLength = Object.keys(val).length;
+    if(dataType === "[object Array]") {
+      valLength = val.length;
+      console.log("Array length: " + valLength);
+    }
+
+    if(dataType === "[object Object]") {
+      valLength = Object.keys(val).length;
+      console.log("Object length: " + valLength);
+    }
 
     // Base case
     if(isPrimitive.includes(dataType)){
@@ -32,7 +40,11 @@ const stringifyJSON = (input) => {
 
     //Recursive case
     for(el in val){
-      result += `${val[el]},`
+      counter = counter + 1;
+
+      // if(counter === valLength - 1) `"${val[el]}`
+
+      covertToString(val[el]);
     }
 
   }
