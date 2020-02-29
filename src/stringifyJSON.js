@@ -2,13 +2,20 @@
 
 const stringifyJSON = (input) => {
   let result = "";
+  let dataType = "";
 
   let isPrimitive = ["[object Number]", "[object Boolean]", "[object Null]"];
   //, "[object String]"
-  console.log(input);
+  // console.log(input);
 
   const covertToString = (val) => {
+    let counter = 0;
     let dataType = Object.prototype.toString.call(val);
+    let valLength = 0;
+
+    if(dataType === "[object Array]") valLength = val.length;
+
+    if(dataType === "[object Object]") valLength = Object.keys(val).length;
 
     // Base case
     if(isPrimitive.includes(dataType)){
@@ -18,15 +25,21 @@ const stringifyJSON = (input) => {
       result =  `"${val}"`;
       return;
     }else {
-        //[object Array], [object Object]
+      // Base case for object and arrays
 
+      // When the pointer is at the end of the array
     }
 
     //Recursive case
+    for(el in val){
+      result += `${val[el]},`
+    }
+
   }
 
   covertToString(input);
 
+  console.log("result "+ result);
   return result;
 };
 
