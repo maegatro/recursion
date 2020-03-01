@@ -4,15 +4,12 @@ const stringifyJSON = (input) => {
   let result = "";
   let dataType = "";
 
-  let date = new Date();
-  console.log(Object.prototype.toString.call(date));
-
   const covertToString = (val) => {
     let valLength = 0;
     dataType = Object.prototype.toString.call(val);
 
     if(dataType === "[object Date]"){
-      result += `${val}`;
+      result += `${val.toISOString()}`;
       return;
     }
 
