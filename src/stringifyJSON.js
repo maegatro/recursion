@@ -39,7 +39,7 @@ const stringifyJSON = (value) => {
   } else if (typeof value == "object") {
     let toString = Object.prototype.toString;
     if (toString.call(value) == "[object Date]") {
-      console.log(value);
+      // console.log(value);
       return `"${value.toISOString()}"`;
     } else if (Array.isArray(value)) {
       let arrayString = [];
