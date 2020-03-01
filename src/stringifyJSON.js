@@ -3,18 +3,10 @@
 const stringifyJSON = (input) => {
   let result = "";
   let dataType = "";
-  let counter = 0;
   let valLength = 0;
-  let isObject = false;
-  let isArray = false;
-  let isPrimitive = ["[object Number]", "[object Boolean]", "[object Null]"];
 
   const covertToString = (val) => {
-
     dataType = Object.prototype.toString.call(val);
-    // console.log(dataType);
-
-    // if(dataType === "[object Undefined]") return;
 
     if(dataType === "[object Number]"){
       result += `${val}`;
@@ -36,9 +28,8 @@ const stringifyJSON = (input) => {
       return;
     }
 
-    if(dataType === "[object Array]" || isArray){
+    if(dataType === "[object Array]"){
       valLength = val.length;
-      isArray = true;
       if(valLength === 0){
         result += `[]`;
         return;
@@ -47,25 +38,26 @@ const stringifyJSON = (input) => {
           if(i === 0){
             result += "[";
             covertToString(val[i]);
-          }else if(i !== valLength){
+          }else if(i < valLength){
             result += ",";
             covertToString(val[i]);
+          } else {
+
           }
         }
+        result += "]";
+        return
       }
-      result += "]";
     }
 
-    if(dataType === "[object Object]" || isObject){
+    if(dataType === "[object Object]"){
       valLength = Object.keys(val).length;
-      valObjArr = Object.entries(val);
-
+      let valObjArr = Object.entries(val);
       if(valLength === 0){
         result += "{}";
         return;
       } else {
         for(let l = 0; l < valLength; l++){
-          // result +=`${covertToString(valObjArr[l][0])}:${covertToString(valObjArr[l][1])}`;
           if(l === 0){
             result += "{";
             covertToString(valObjArr[l][0]);
@@ -81,9 +73,9 @@ const stringifyJSON = (input) => {
       }
       result += "}";
     }
-  }
-    console.log(result);
-    covertToString(input);
 
+    console.log(result);
+  }
+    covertToString(input);
     return result;
   }
