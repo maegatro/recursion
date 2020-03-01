@@ -11,8 +11,8 @@ const stringifyJSON = (nonString) => {
       if (Array.isArray(nonStringStep) && nonStringStep.length === 0) {
         return "[]"
       }
-      else if (typeof(nonStringStep) === 'object' && Object.keys(nonStringStep).length === 0) {
-        return "{d}"
+      else if (typeof(nonStringStep) === 'object'&& Object.keys(nonStringStep)[0] === undefined) {
+        return "{}"
       }
 
       //The next if will seperate non-0-length arrays from non-0-length objects and return the appropriate values
