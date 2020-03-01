@@ -9,7 +9,7 @@ const stringifyJSON = (input) => {
     dataType = Object.prototype.toString.call(val);
 
     if(dataType === "[object Date]"){
-      result += `${val.toISOString()}`;
+      result += `"${val.toISOString()}"`;
       return;
     }
 
