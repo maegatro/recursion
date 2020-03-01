@@ -3,9 +3,9 @@
 const stringifyJSON = (input) => {
   let result = "";
   let dataType = "";
-  let valLength = 0;
 
   const covertToString = (val) => {
+    let valLength = 0;
     dataType = Object.prototype.toString.call(val);
 
     if(dataType === "[object Number]"){
@@ -41,12 +41,10 @@ const stringifyJSON = (input) => {
           }else if(i < valLength){
             result += ",";
             covertToString(val[i]);
-          } else {
-
           }
         }
         result += "]";
-        return
+        return;
       }
     }
 
