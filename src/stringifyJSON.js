@@ -14,6 +14,10 @@ const stringifyJSON = (nonString) => {
       else if (typeof(nonStringStep) === 'object' && Object.keys(nonStringStep)[0] === undefined && typeof(nonStringStep.getMonth) !== 'function') {
         return "{}"
       }
+      else if(typeof(nonStringStep) === 'object' && Object.keys(nonStringStep)[0] === undefined && typeof(nonStringStep.getMonth) === 'function') {
+        return nonStringStep.toISOString()
+      }
+
 
       //The next if will seperate non-0-length arrays from non-0-length objects and return the appropriate values
       if (Array.isArray(nonStringStep)  && nonStringStep.length > 0 ) {
