@@ -55,7 +55,15 @@ const stringifyJSON = (input) => {
         result += "{}";
         return;
       } else {
+
+        // console.log(val);
+
         for(let l = 0; l < valLength; l++){
+          if(valObjArr[l][0] === undefined || Object.prototype.toString.call(valObjArr[l][1]) === "[object Function]") {
+            result += `{}`;
+            return;
+          }
+
           if(l === 0){
             result += "{";
             covertToString(valObjArr[l][0]);
@@ -72,7 +80,7 @@ const stringifyJSON = (input) => {
       result += "}";
     }
 
-    console.log(result);
+    // console.log(result);
   }
     covertToString(input);
     return result;
