@@ -18,6 +18,5 @@ var game = function(count, combo =[]){
   
 }
 game(count);
-console.log(combos);
 return combos;
 };
