@@ -4,6 +4,9 @@ const stringifyJSON = (value) => {
   // YOUR CODE HERE
   if(typeof value === 'number' || typeof value === 'boolean' || value === null){
     return `${value}`;
+  } else if(value instanceof Date){
+    let date = value.toString();
+    return `${date}`
   } else if(typeof value === 'string'){
     return `"${value}"`
   } else if(Array.isArray(value)){
