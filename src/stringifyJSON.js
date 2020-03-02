@@ -5,7 +5,7 @@ const stringifyJSON = (value) => {
   if(typeof value === 'number' || typeof value === 'boolean' || value === null){
     return `${value}`;
   } else if(value instanceof Date){
-    let date = value.toString();
+    let date = value.toISOString();
     return `${date}`
   } else if(typeof value === 'string'){
     return `"${value}"`
