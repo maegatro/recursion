@@ -3,7 +3,7 @@ obj1 =[1,2,3,{key1:2,key2:5},[],3,4,5];
 
 const stringifyJSON = (obj) => {
   
-  if ((!Array.isArray(obj) && typeof obj !== 'object')){
+  if (!Array.isArray(obj) && typeof obj !== 'object' && typeof obj !== 'function' && typeof obj !== undefined ){
     if(typeof obj== "string"){
       return '"'+obj+'"'
     }
@@ -12,9 +12,7 @@ const stringifyJSON = (obj) => {
   if(obj == null){
     return 'null';
   }
-  if(typeof obj =='function'){
-    return '';
-  }
+
   if(Array.isArray(obj)){
     console.log('enter');
     var arr2=[];
@@ -30,7 +28,11 @@ const stringifyJSON = (obj) => {
     
     var arr1=[];
     for(var key in obj){
+      if(typeof obj[key] =='function' || typeof obj[key] == 'undefined'){
+      }
+      else{
       arr1.push(''+'"'+key+'"'+':'+stringifyJSON(obj[key]));
+      }
     }
     var arr4='{'+arr1.join(',')+'}';
     return arr4;

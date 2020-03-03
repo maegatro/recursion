@@ -12,3 +12,15 @@
 //}
 //var arr4='{'+arr1.join(',')+'}';
 //console.log(arr4);
+var obj={function:function(){}, undefined:undefined}
+var arr1=[];
+for(var key in obj){
+ console.log(typeof obj[key]);
+if(typeof obj[key]=="function"){
+    arr1.push();
+}
+if(typeof obj[key]==undefined){
+   arr1.push();
+}
+}
+console.log(arr1);
