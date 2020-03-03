@@ -1,13 +1,9 @@
 /* exported stringifyJSON */
-obj1 =[1,2,3,[2,3],4];
+obj1 =[1,2,3,{key1:2,key2:5},[],3,4,5];
 
 const stringifyJSON = (obj) => {
-  var result=[];
-  console.log(!Array.isArray(obj));
-  console.log(typeof obj !== 'object');
-  console.log(obj !== null);
-  if ((!Array.isArray(obj) || typeof obj !== 'object') && obj !== null){
-    console.log('enter');
+  
+  if ((!Array.isArray(obj) && typeof obj !== 'object')){
     return ''+obj;
   }
   if(obj == null){
@@ -17,14 +13,25 @@ const stringifyJSON = (obj) => {
     return ''+obj;
   }
   if(Array.isArray(obj)){
+    console.log('enter');
     var arr2=[];
     for (var i = 0; i < obj.length; i++){
+      console.log(obj[i]);
       arr2.push(stringifyJSON(obj[i]));
     }
     var arr3 = '['+arr2.join(',')+']';
-    result.push(arr3);
+    return arr3;
+    
   }
-  
-  return '{'+result.join(',')+'}';
+  if((typeof obj) =='object'){
+    
+    var arr1=[];
+    for(var key in obj){
+      arr1.push(''+key+':'+stringifyJSON(obj[key]));
+    }
+    var arr4='{'+arr1.join(',')+'}';
+    return arr4;
+    
+  }
 };
 console.log(stringifyJSON(obj1));
