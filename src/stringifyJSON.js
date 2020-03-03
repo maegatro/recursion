@@ -14,10 +14,8 @@ const stringifyJSON = (obj) => {
   }
 
   if(Array.isArray(obj)){
-    console.log('enter');
     var arr2=[];
     for (var i = 0; i < obj.length; i++){
-      console.log(obj[i]);
       arr2.push(stringifyJSON(obj[i]));
     }
     var arr3 = '['+arr2.join(',')+']';

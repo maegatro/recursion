@@ -19,7 +19,7 @@ for(var key in obj){
 if(typeof obj[key]=="function"){
     arr1.push();
 }
-if(typeof obj[key]==undefined){
+if(typeof obj[key]=='undefined'){
    arr1.push();
 }
 }
