@@ -12,7 +12,7 @@ const stringifyJSON = (obj) => {
     return 'null';
   }
   if(Object.prototype.toString.call(obj) === '[object Date]'){ 
-    return '"'+obj.toString()+'"';
+    return '"'+obj.toISOString()+'"';
   }
   if(Array.isArray(obj)){
     var arr2=[];
