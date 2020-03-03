@@ -1,5 +1,4 @@
 /* exported stringifyJSON */
-obj1 =[1,2,3,{key1:2,key2:5},[],3,4,5];
 
 const stringifyJSON = (obj) => {
   
@@ -7,7 +6,10 @@ const stringifyJSON = (obj) => {
     if(typeof obj== "string"){
       return '"'+obj+'"'
     }
-    else return ''+obj;
+    else if(Object.prototype.toString.call(obj) === '[object Date]'){ 
+    return '"'+obj.toString()+'"';
+  }
+  else return ''+obj;
   }
   if(obj == null){
     return 'null';
@@ -37,4 +39,3 @@ const stringifyJSON = (obj) => {
     
   }
 };
-console.log(stringifyJSON(obj1));
