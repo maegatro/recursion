@@ -6,15 +6,14 @@ const stringifyJSON = (obj) => {
     if(typeof obj== "string"){
       return '"'+obj+'"'
     }
-    else if(Object.prototype.toString.call(obj) === '[object Date]'){ 
-    return '"'+obj.toString()+'"';
-  }
   else return ''+obj;
   }
   if(obj == null){
     return 'null';
   }
-
+  if(Object.prototype.toString.call(obj) === '[object Date]'){ 
+    return '"'+obj.toString()+'"';
+  }
   if(Array.isArray(obj)){
     var arr2=[];
     for (var i = 0; i < obj.length; i++){
