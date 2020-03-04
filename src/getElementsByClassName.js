@@ -2,7 +2,7 @@
 
 const getElementsByClassName = (className) => {
   
-  elementsWithClassName = [];
+  let elementsWithClassName = [];
 
   function findElementsWithClassNames (node) {
     
@@ -10,13 +10,11 @@ const getElementsByClassName = (className) => {
       elementsWithClassName.push(node);
     }
 
-    if(node.childNodes.length > 0) {   // recursion case
+    if(node.childNodes.length > 0) {   
       for(let prop of node.childNodes) {
         findElementsWithClassNames(prop);
       }
     }
-    
-    // case exits when it reaches the end of the stack
   }
 
   findElementsWithClassNames(document.body);

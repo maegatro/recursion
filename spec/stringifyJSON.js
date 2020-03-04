@@ -2,7 +2,7 @@ const stringifiableValues = [
   100000, // number
   true, // boolean
   false, // boolean
-  null, // boolean
+  null, // null
   "Code Chrysalis", // string
   [], // array
   [10000], // array with number
