@@ -6,10 +6,6 @@ const stringifyJSON = (objectToStringify) => {
     return `"` + str + `"`
   }
 
-  if (objectToStringify === undefined || typeof(objectToStringify) === 'function'){
-    return `{}`
-  }
-  
   function stringing(input, index){
     let tmpBuilder
     index = index || 0
@@ -43,9 +39,30 @@ const stringifyJSON = (objectToStringify) => {
           }
 
           return tmpBuilder               //[] to get out of a level of recursion
-        } else if (input === Object(input)){
+        } else if (input !== null && !Array.isArray(input)){
+          
+          // direct build using reduce, with help from stackoverflow
+          
+          return `{` + Object.keys(input).reduce((acc, key) => {
+            if (input[key] === undefined){
+              return acc
+            } else 
+              return [...acc, stringing(key) + `:` + stringing(input[key])]
+          }, []).join(`,`) + `}`
+        
+          
+          
+          /* Attempted object walk using similar idea of arrays - semi failure,
+             I want to keep for further investigating with more time (deadline looming)
+             - bad practice to keep old commented code, I know :(
+               -possibilites check initial conditions + looping(recusion)
+
           let keys = Object.keys(input)
           let key = keys[index]
+
+          if (Object.keys(input).length === 0){
+            return `{}`
+          }
           
           tmpBuilder = `"` + key + `":` + stringing(input[key])
 
@@ -56,15 +73,13 @@ const stringifyJSON = (objectToStringify) => {
             return `{` + tmpBuilder + `}`
           }
 
-          return tmpBuilder
+          return tmpBuilder */
         }
-        break;
-
       default:
         break;
     }
     
   }
-  
+
   return stringing(objectToStringify)
 };
