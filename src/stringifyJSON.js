@@ -22,6 +22,9 @@ const stringifyJSON = (objectToStringify) => {
       //case `function`:
       //  return `{}`
 
+      case `Date`:
+        return input.toISOString()
+
       case `object`:
         if (input === null){                     //-- NULL case --
         return `null`
@@ -80,6 +83,7 @@ const stringifyJSON = (objectToStringify) => {
 
           return tmpBuilder */
         }
+        break;
       default:
         break;
     }
