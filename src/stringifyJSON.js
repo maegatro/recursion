@@ -1,7 +1,7 @@
 /* exported stringifyJSON */
 
 const stringifyJSON = (item) => {
-  let result;
+  let result = "";
   
   function makeString(thing) {
     let resultArray = [];
@@ -20,6 +20,7 @@ const stringifyJSON = (item) => {
     }else if (Array.isArray(thing)) {
       if (thing.length === 0) {
         result = '[]';
+        return result;
       }else {
         thing.forEach((element) => { 
           resultArray.push(makeString(element));
@@ -29,12 +30,22 @@ const stringifyJSON = (item) => {
       }  
     }else if (typeof thing === "object") {
       let resultObject = "";
+      if (Object.keys(thing).length === 0) {
+        result = "{}";
+        return result;
+      }
       for (let key in thing) {
         let value = thing[key];
-          resultObject += `"${key}":${makeString(value)},`;  
+        if (typeof value === "undefined" || typeof value === "function") {
+          result = "{}";
+          return result;
+        }
+        resultObject += `"${key}":${makeString(value)},`;  
+        
       }
       resultObject = resultObject.slice(0,-1);
       result = "{" + resultObject + "}";
+      return result;
     }
   }
   makeString(item);  
