@@ -4,22 +4,28 @@ const stringifyJSON = (objectToStringify) => {
   //let answer
   //let result = `"${answer}"`
   
+  function stringString(str){
+    return (`"` + str + `"`)
+  }
+  
   function stringing(input){
     let result
 
     if (input === null)
-      result = "null"
+      result = `null`
 
-    switch (typeof(input)) {
-      case "number":
-      case "boolean":
+    switch (typeof(input)){
+      case `number`:
+      case `boolean`:
         result = `${input}`
         break;
-      case "undefined":
-      case "function":
+      case `string`:
+        result = stringString(input)
+        break;
+      case `undefined`:
+      case `function`:
         result = "{}"
         break;
-
       default:
         break;
     }
