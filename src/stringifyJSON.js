@@ -7,10 +7,14 @@ const stringifyJSON = (item) => {
     let resultArray = [];
     if (typeof thing === "number") {
       result = thing.toString();
-      return result;
+      return result; 
     }else if (typeof thing === "boolean"){
       result = thing.toString();
       return result;
+    }else if (thing.prototype.toString.call(date) === '[object Date]') {
+      result = thing.toString();
+      return result;
+    
     }else if (thing === null) {
       result  = "null";
       return result;
