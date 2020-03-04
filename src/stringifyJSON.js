@@ -5,6 +5,10 @@ const stringifyJSON = (objectToStringify) => {
   function stringString(str){
     return `"` + str + `"`
   }
+
+  if (objectToStringify === undefined || typeof(objectToStringify) === 'function'){
+    return `{}`
+  }
   
   function stringing(input, index){
     let tmpBuilder
@@ -39,6 +43,20 @@ const stringifyJSON = (objectToStringify) => {
           }
 
           return tmpBuilder               //[] to get out of a level of recursion
+        } else if (input === Object(input)){
+          let keys = Object.keys(input)
+          let key = keys[index]
+          
+          tmpBuilder = `"` + key + `":` + stringing(input[key])
+
+          if(index < keys.length -1){
+            return tmpBuilder + `,` + stringing(object, index + 1)
+          }
+          if (index === 0){
+            return `{` + tmpBuilder + `}`
+          }
+
+          return tmpBuilder
         }
         break;
 
