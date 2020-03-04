@@ -9,23 +9,20 @@ const stringifyJSON = (objectToStringify) => {
   }
   
   function stringing(input, index){
-    let result, tmpBuilder
+    let tmpBuilder
     index = index || 0
 
     switch (typeof(input)){
       case `number`:
       case `boolean`:
         return `${input}`
-        break;
 
       case `string`:
         return stringString(input)
-        break;
 
       case `undefined`:
       case `function`:
         return `{}`
-        break;
 
       case `object`:
         if (input === null){
