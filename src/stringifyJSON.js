@@ -27,10 +27,8 @@ const stringifyJSON = (obj) => {
     
     var arr1=[];
     for(var key in obj){
-      if(typeof obj[key] =='function' || typeof obj[key] == 'undefined'){
-      }
-      else{
-      arr1.push(''+'"'+key+'"'+':'+stringifyJSON(obj[key]));
+      if(typeof obj[key] !=='function' && typeof obj[key] !== 'undefined'){
+        arr1.push(''+'"'+key+'"'+':'+stringifyJSON(obj[key]));
       }
     }
     var arr4='{'+arr1.join(',')+'}';
