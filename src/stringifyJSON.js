@@ -18,9 +18,9 @@ const stringifyJSON = (objectToStringify) => {
       case `string`:
         return stringString(input)
 
-      case `undefined`:
-      case `function`:
-        return `{}`
+      //case `undefined`:
+      //case `function`:
+      //  return `{}`
 
       case `object`:
         if (input === null){                     //-- NULL case --
@@ -41,6 +41,11 @@ const stringifyJSON = (objectToStringify) => {
           return tmpBuilder               //[] to get out of a level of recursion
         } else if (input !== null && !Array.isArray(input)){
           
+          if((input.hasOwnProperty(`undefined`)) ||
+            (input.hasOwnProperty(`function`))){
+              return `{}`
+            } else
+
           // direct build using reduce, with help from stackoverflow
           
           return `{` + Object.keys(input).reduce((acc, key) => {
