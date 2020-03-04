@@ -24,7 +24,7 @@ const stringifyJSON = (value) => {
     if (typeof input === "function" || typeof input === "undefined"){
       output += "null";
     };
-    
+
     if (Array.isArray(input)){
       if (input.length === 0) {
         output += "[]";
@@ -44,7 +44,9 @@ const stringifyJSON = (value) => {
       }
     };
     if (Object.prototype.toString.call(input) === "[object Object]"){     
-      if(Object.keys(input).length === 0){
+      if((Object.keys(input).length === 0) 
+      || (input.hasOwnProperty("function")) 
+      || (input.hasOwnProperty("undefined"))){
         output += "{}"
         return;
       } else {
