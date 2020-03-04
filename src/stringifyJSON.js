@@ -5,7 +5,7 @@ const stringifyJSON = (objectToStringify) => {
   //let result = `"${answer}"`
   
   function stringString(str){
-    return (`"` + str + `"`)
+    return `"` + str + `"`
   }
   
   function stringing(input, index){
@@ -15,36 +15,38 @@ const stringifyJSON = (objectToStringify) => {
     switch (typeof(input)){
       case `number`:
       case `boolean`:
-        result = `${input}`
+        return `${input}`
         break;
 
       case `string`:
-        result = stringString(input)
+        return stringString(input)
         break;
 
       case `undefined`:
       case `function`:
-        result = `{}`
+        return `{}`
         break;
 
       case `object`:
         if (input === null){
-        result = `null`
+        return `null`
         } else if (Array.isArray(input)){
-          if (index = input.length){
-            (result = `[]`)
-          } else
-            for (let i = 0; i < input.length; i++) {
-              tmpBuilder = tmpBuilder + `'` + stringing(input[i])
+          if (input.length === index){
+            return `[]`
           }
-          result = (`[` + tmpBuilder + `]`)
-        } else
+          tmpBuilder = stringing(input[index])
+
+          if (index < input.length - 1){
+            tmpBuilder = tmpBuilder + `,` + stringing(input, index + 1)
+          }
+          return `[` + tmpBuilder + `]`
+        }
         break;
 
       default:
         break;
     }
-    return result
+    
   }
   
   return stringing(objectToStringify)
