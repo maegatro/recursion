@@ -27,7 +27,7 @@ const stringifyJSON = (value) => {
 
     if (Object.prototype.toString.call(input) === "[object Date]"){
       let time = input.toISOString();
-      output += String(time);
+      output += (`"${time}"`);
     }
 
     if (Array.isArray(input)){
