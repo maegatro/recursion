@@ -11,7 +11,8 @@ const stringifyJSON = (objectToStringify) => {
     index = index || 0
 
     if (Object.prototype.toString.call(input) === `[object Date]`){
-      return input.toISOString()
+      let time = input.toISOString();
+      return `"${time}"`
     }
 
     switch (typeof(input)){
