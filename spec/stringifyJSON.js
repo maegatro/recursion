@@ -45,6 +45,7 @@ describe("stringifyJSON", function() {
   function testUnstringifiable(valueToTest, index) {
     it("should not be able to parse bad values", () => {
       const result = stringifyJSON(valueToTest);
+      console.log(result);
       const expected = JSON.stringify(valueToTest);
       expect(result).toEqual(expected);
     });
