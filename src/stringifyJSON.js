@@ -5,11 +5,26 @@ const stringifyJSON = (value) => {
 
   const stringMachine = input => {
     
-    if (typeof input === "number") output += String(input);
-    if (typeof input === "boolean") output += String(input);
-    if (input === null) output += null;
-    if (typeof input === "string") output += (`"${input}"`);
-    if (typeof input === "function" || typeof input === undefined) output += null;
+    if (typeof input === "number"){
+      output += String(input);
+    };
+
+    if (typeof input === "boolean"){
+      output += String(input);
+    };
+
+    if (input === null){
+      output += "null";
+    };
+    
+    if (typeof input === "string"){
+      output += (`"${input}"`);
+    };
+
+    if (typeof input === "function" || typeof input === "undefined"){
+      output += "null";
+    };
+    
     if (Array.isArray(input)){
       if (input.length === 0) {
         output += "[]";
@@ -27,22 +42,26 @@ const stringifyJSON = (value) => {
         output += "]";
         return;
       }
-    }
-    if (typeof input === "object"){      
-      if(Object.keys(value).length === 0){
+    };
+    if (Object.prototype.toString.call(input) === "[object Object]"){     
+      if(Object.keys(input).length === 0){
         output += "{}"
+        return;
       } else {
         output += "{";
-        for(let keys in input){
-          output += `"${keys}":`
-          stringMachine(input[keys])
-        }
-        output += "}"
+        Object.keys(input).forEach((key, index) => {
+          if (index !== 0) {
+            output += ","
+          }
+            output += `"${key}":`
+            stringMachine(input[key]);
+        });
       }
-    }         
-
-  }  
-  
+      output += "}"
+      return;
+    };       
+  }    
   stringMachine(value);
   return output;
 };
+
