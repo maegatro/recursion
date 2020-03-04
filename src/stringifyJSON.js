@@ -12,7 +12,8 @@ const stringifyJSON = (item) => {
       result = thing.toString();
       return result;
     }else if (thing instanceof Date) {
-      result = thing.toString();
+      console.log(thing)
+      result = thing.toJSON();
       return result;
     }else if (thing === null) {
       result  = "null";
