@@ -41,7 +41,6 @@ const stringifyJSON = (item) => {
           return result;
         }
         resultObject += `"${key}":${makeString(value)},`;  
-        
       }
       resultObject = resultObject.slice(0,-1);
       result = "{" + resultObject + "}";
