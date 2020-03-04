@@ -2,46 +2,74 @@
 
 const stringifyJSON = (info) => {
   // YOUR CODE HERE
-  // console.log(typeof info);
-  let result = "";
+  if (typeof info === "number" || typeof info === "boolean"){
+    return info.toString();
+  }
+  if (info === null){
+    return 'null'; 
+  }
+  if (typeof info === "string"){
+    return `"${info}"`;
+  }
 
-  const recurse = (value) => {
-    console.log("aaa", value);
-    if (typeof value === "string"){
-      result = `"${value}"`;
-    } else if (value === null){
-      result = "null"; 
+  if (typeof info === "object"){
+    let resultArr = '['; 
+    let resultArrEnd = ']';
 
-    } else if (Array.isArray(value)){
-      console.log("array", value);
-        if (value.length < 1){
-        result = `[${value}]`;
+    if (Array.isArray(info)){
+      if (info.length < 1){
+        resultArr += resultArrEnd;  
+      }
+
+      for (let i = 0; i < info.length; i++){
+        if (i === 0 && i === info.length -1){
+            resultArr += stringifyJSON(info[i]) + resultArrEnd;
+            // console.log(resultArr);
+        } else if (i === 0 && i !== info.length - 1){
+          resultArr += stringifyJSON(info[i]); 
+        } else if ((i === 1 && i === info.length - 1) || (i > 1 && i === info.length - 1)){
+            resultArr += ',' + stringifyJSON(info[i]) + resultArrEnd; 
+            // console.log(resultArr);
+        } else if (i === 1 && i !== info.length - 1){
+            resultArr += ',' + stringifyJSON(info[i]);
+            // console.log(resultArr);
         } else {
-          result = "["
-          for (let i = 0; i < value.length; i++){
-            if (typeof value[i] === "string"){
-              result += '"' + value[i] + '"' + ",";
-                if (i === value.length - 1){
-                  result = result.slice(0, -1) + "]";
-              } 
-            } 
-            else if(typeof value[i] == "number"){
-              result += value[i] + ",";
-                if (i === value.length - 1){
-                  result = result.slice(0, -1) + "]";
-                }
-            } else {
-              result = "'" + value + "'";
-            }
-          }
+            resultArr += ',' + info[i]; 
         }
+      }
+      return resultArr;
     } else {
-      result =  value.toString();
+      let resultObj = '{';
+      let resultObjEnd = '}';
+      if (Object.keys(info).length < 1){
+        resultObj += resultObjEnd; 
+      } 
+
+      for (const key in info){
+        let stringKey = `"${key}"`;
+        // console.log(key);
+        let totalKey = Object.keys(info).length;
+        let arrKeys = Object.keys(info);
+        if (info[key] === undefined){
+          return "{}";
+        }
+        // console.log(arrKeys[0]);
+        if (totalKey === 1){
+          resultObj += stringKey + ':' + stringifyJSON(info[key]) + resultObjEnd;
+        } else if (totalKey > 1 && key === arrKeys[0]){
+          resultObj += stringKey + ':' + stringifyJSON(info[key]);
+        } else if (totalKey > 1 && key === arrKeys[totalKey - 1]){
+          // console.log("aaa", key ,arrKeys[totalKey - 1]);
+          resultObj += ',' + stringKey + ':' + stringifyJSON(info[key]) + resultObjEnd;
+        } else if (totalKey > 1 && key !== arrKeys[totalKey - 1]){
+          resultObj += ',' + stringKey + ':' + stringifyJSON(info[key]);
+          // console.log(resultObj);
+        } 
+      }     
+      return resultObj;
     }
-  
-};
-  recurse(info);
-  return result; 
+  }
+}
 
  
-}
+
