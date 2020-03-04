@@ -10,6 +10,10 @@ const stringifyJSON = (objectToStringify) => {
     let tmpBuilder
     index = index || 0
 
+    if (Object.prototype.toString.call(input) === `[object Date]`){
+      return input.toISOString()
+    }
+
     switch (typeof(input)){
       case `number`:
       case `boolean`:
@@ -21,9 +25,6 @@ const stringifyJSON = (objectToStringify) => {
       //case `undefined`:
       //case `function`:
       //  return `{}`
-
-      case `Date`:
-        return input.toISOString()
 
       case `object`:
         if (input === null){                     //-- NULL case --
