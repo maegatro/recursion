@@ -52,7 +52,11 @@ const stringifyJSON = (value) => {
       }
         output += "}"
         return;
-    };         
+    }; 
+    if (Object.prototype.toString.call(input) === "[object Date]"){
+      let time = input.toISOString();
+      output += (`"${time}"`);
+    }        
   }    
   stringConverter(value);
   return output;
