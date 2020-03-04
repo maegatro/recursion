@@ -11,10 +11,9 @@ const stringifyJSON = (item) => {
     }else if (typeof thing === "boolean"){
       result = thing.toString();
       return result;
-    }else if (thing.prototype.toString.call(date) === '[object Date]') {
+    }else if (thing instanceof Date) {
       result = thing.toString();
       return result;
-    
     }else if (thing === null) {
       result  = "null";
       return result;
