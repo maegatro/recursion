@@ -37,7 +37,7 @@ const stringifyJSON = (value) => {
       }
     };
     if (Object.prototype.toString.call(input) === "[object Object]"){     
-      if((Object.keys(value).length === 0) || (input.hasOwnProperty("function")) || (input.hasOwnProperty("undefined"))){
+      if((Object.keys(input).length === 0) || (input.hasOwnProperty("function")) || (input.hasOwnProperty("undefined"))){
         output += "{}"
         return;
       } else {
