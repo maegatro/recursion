@@ -1,4 +1,4 @@
-// /* exported stringifyJSON */
+/* exported stringifyJSON */
 
 const stringifyJSON = (info) => {
   // YOUR CODE HERE
@@ -79,4 +79,5 @@ const stringifyJSON = (info) => {
     }
   }
 }
+
 

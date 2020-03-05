@@ -1,3 +1,6 @@
+/* exported getElementsByClassName */
+
+
 const getElementsByClassName = (target) => {
   // YOUR CODE HERE
   let result = [];
