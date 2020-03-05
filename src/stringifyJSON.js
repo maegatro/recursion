@@ -1,4 +1,4 @@
-/* exported stringifyJSON */
+// /* exported stringifyJSON */
 
 const stringifyJSON = (info) => {
   // YOUR CODE HERE
@@ -11,10 +11,16 @@ const stringifyJSON = (info) => {
   if (typeof info === "string"){
     return `"${info}"`;
   }
+  if (info instanceof Date){
+    info = info.toISOString();
+    // console.log(info);
+    return `"${info}"`
+  }
 
   if (typeof info === "object"){
     let resultArr = '['; 
     let resultArrEnd = ']';
+
 
     if (Array.isArray(info)){
       if (info.length < 1){
@@ -41,6 +47,9 @@ const stringifyJSON = (info) => {
     } else {
       let resultObj = '{';
       let resultObjEnd = '}';
+
+
+
       if (Object.keys(info).length < 1){
         resultObj += resultObjEnd; 
       } 
@@ -70,6 +79,4 @@ const stringifyJSON = (info) => {
     }
   }
 }
-
- 
 
