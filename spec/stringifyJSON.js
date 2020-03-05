@@ -1,5 +1,6 @@
 const stringifiableValues = [
   100000,
+  new Date('05 October 2011 14:48 UTC'),
   true,
   false,
   null,
