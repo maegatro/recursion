@@ -24,6 +24,7 @@ const stringifyJSON = (input) => {
       for (const prop in input) {
         if (typeof input[prop] === "function" || input[prop] === undefined) return result += "{}";
       }
+      if (input instanceof Date) return result += input.toISOString();
       if (Object.keys(input).length === 0) {
         result += "{}";
       } else {
