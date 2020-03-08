@@ -1,24 +1,20 @@
 /* exported rockPaperScissors */
 
-const rockPaperScissors = () => {
-  if (rounds === undefined) {
-    rounds = 3;
-  }
-  let weapons = ["rock", "paper", "scissors"];
-  let outcome = [];
+const rockPaperScissors = (rounds = 3) => {
+  const combinations = [];
+  const weapons = ["rock", "paper", "scissors"];
 
-  const play = (rounds, result = []) => {
-    // exit case
-    if (rounds < 1) {
-      outcome.push(result);
+  const game = (roundsLeft, choicesMade) => {
+    if (roundsLeft === 0) {
+      combinations.push(choicesMade);
       return;
-    }
-    // recursive case
-    for (let i = 0; i < weapons.length; i++) {
-      const weapon = weapons[i];
-      play(rounds - 1, result.concat(weapon));
+    } else {
+      for (let i = 0; i < weapons.length; i++) {
+        let weapon = weapons[i];
+        game(roundsLeft - 1, choicesMade.concat(weapon));
+      }
     }
   };
-  play(rounds);
-  return outcome;
+  game(rounds, []);
+  return combinations;
 };

@@ -1,22 +1,18 @@
 /* exported getElementsByClassName */
 
-const getElementsByClassName = (className) => {
-  let elementWithClassName = [];
+const getElementsByClassName = (name) => {
+  const outcome = [];
 
-  function findElementWithClassName(element) {
-    if (
-      element.classList !== undefined &&
-      element.classList.contains(className)
-    ) {
-      elementWithClassName.push(element);
+  const searchForClassName = (elements) => {
+    if (elements.children === undefined) return;
+    if (elements.classList && elements.classList.contains(name)) {
+      outcome.push(elements);
     }
-    if (element.childElement.length > 0) {
-      for (let prop of element.childElement) {
-        findElementWithClassName(prop);
-      }
-    }
-  }
-  findElementWithClassName(document.body);
 
-  return elementWithClassName;
+    for (let element of elements.children) {
+      searchForClassName(element);
+    }
+  };
+  searchForClassName(document);
+  return outcome;
 };
