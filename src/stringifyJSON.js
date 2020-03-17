@@ -1,39 +1,42 @@
 /* exported stringifyJSON */
 
 const stringifyJSON = (val) => {
-  let arr = [];
-  let obj = [];
-
   //Primitives
-  if (typeof val === "string") {
-    return '"' + val + '"';
-  } else if (typeof val === "boolean" || typeof val === "number") {
-    return val.toString;
-  } else if (val == null) {
-    return "null";
+  if (typeof val === "boolean" || typeof val === "number") {
+    return `${val}`;
+  }
 
-    //Array
-  } else if (Array.isArray(val)) {
-    if (val.length === 0) {
-      return "[]";
-    } else {
-      val.forEach((elementOfVal) => {
-        arr.push(stringfyJSON(elementOfVal));
-      });
-    }
-    //Date object
-  } else if (val instanceof Date) {
+  if (typeof val === "string") {
+    return `"${val}"`;
+  }
+
+  if (val === null) {
+    return "null";
+  }
+
+  if (val instanceof Date) {
     const date = val.toISOString();
-    return "'" + date + "'";
-    //Object
-  } else if (typeof val === "object") {
-    for (key in val) {
-      const data = val[key];
-      const stringfyVal = stringfyJSON(data);
-      if (typeof stringfyVal !== "undefined") {
-        obj.push("key :" + stringfyVal);
+    return `"${date}"`;
+  }
+
+  //Array
+  if (Array.isArray(val)) {
+    let arr = [];
+    val.map(function(elementOfVal) {
+      arr.push(stringifyJSON(elementOfVal));
+    });
+    return "[" + arr.join() + "]";
+  }
+
+  if (typeof val === "object") {
+    let arr = [];
+    for (let key in val) {
+      let data = val[key];
+      let stringifyVal = stringifyJSON(data);
+      if (typeof stringifyVal !== "undefined") {
+        arr.push(`"${key}":${stringifyVal}`);
       }
     }
-    return "{" + obj + "}";
+    return "{" + arr.join(",") + "}";
   }
 };
